@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+
+    /* ─────────────────────────────────────────────
+       CORE BACKGROUND SYSTEM
+    ───────────────────────────────────────────── */
+    --background: 32 35% 92%;           /* #F3ECE6 */
+    --background-subtle: 30 30% 96%;    /* softer lifted */
+    --background-raised: 0 0% 100%;     /* pure white */
+
+    --foreground: 220 25% 15%;          /* dark soft charcoal */
+    --foreground-muted: 220 15% 40%;
+    --foreground-subtle: 220 10% 55%;
+
+    /* ─────────────────────────────────────────────
+       BRAND COLORS (PASTEL SYSTEM)
+    ───────────────────────────────────────────── */
+    --primary: 25 85% 82%;              /* #F8E0C2 (peach) */
+    --primary-strong: 18 70% 75%;
+    --primary-foreground: 220 25% 15%;
+
+    --secondary: 270 65% 85%;           /* #D5D2FD (lavender) */
+    --secondary-foreground: 220 25% 15%;
+
+    --accent-rose: 350 60% 82%;         /* #F0C7C3 */
+    --accent-lilac: 290 70% 90%;        /* #F5D6FF */
+    --accent-yellow: 45 95% 85%;        /* #FCE8B3 */
+
+    /* ─────────────────────────────────────────────
+       CARD / SURFACE
+    ───────────────────────────────────────────── */
+    --card: 0 0% 100%;
+    --card-foreground: 220 25% 15%;
+    --border: 30 20% 88%;
+    --border-soft: 30 20% 92%;
+
+    --radius: 1.75rem;
+
+    /* ─────────────────────────────────────────────
+       GLASS SYSTEM (SOFT)
+    ───────────────────────────────────────────── */
+    --glass-bg: hsla(0, 0%, 100%, 0.65);
+    --glass-border: hsla(0, 0%, 100%, 0.9);
+    --glass-shadow:
+      0 10px 40px rgba(0,0,0,0.06),
+      0 2px 8px rgba(0,0,0,0.04);
+
+    /* ─────────────────────────────────────────────
+       GRADIENTS
+    ───────────────────────────────────────────── */
+    --gradient-primary:
+      linear-gradient(
+        135deg,
+        hsl(350,60%,82%) 0%,
+        hsl(270,65%,85%) 50%,
+        hsl(25,85%,82%) 100%
+      );
+
+    --gradient-soft:
+      linear-gradient(
+        135deg,
+        hsl(25,85%,88%) 0%,
+        hsl(290,70%,92%) 100%
+      );
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: hsl(270 65% 85%);
+    color: hsl(var(--foreground));
+  }
+}
+
+/* ─────────────────────────────────────────────
+   COMPONENTS
+───────────────────────────────────────────── */
+@layer components {
+
+  /* Glass Card */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: var(--radius);
+  }
+
+  /* Card */
+  .card-aura {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card-aura:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  }
+
+  /* Input */
+  .input-aura {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    border-radius: 1.25rem;
+    border: 1px solid hsl(var(--border));
+    background: white;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+  }
+
+  .input-aura:focus {
+    outline: none;
+    border-color: hsl(270 65% 85%);
+    box-shadow: 0 0 0 3px hsla(270,65%,85%,0.25);
+  }
+
+  /* Buttons */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    color: hsl(var(--foreground));
+    transition: all 0.25s ease;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+  }
+
+  .btn-secondary {
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    background: white;
+    border: 1px solid hsl(var(--border));
+    font-weight: 600;
+  }
+
+  .btn-secondary:hover {
+    background: hsl(var(--background-subtle));
+  }
+}
+
+/* ─────────────────────────────────────────────
+   UTILITIES
+───────────────────────────────────────────── */
+@layer utilities {
+
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .blob-peach {
+    background: radial-gradient(circle, hsl(25,85%,82%) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+  }
+
+  .blob-lavender {
+    background: radial-gradient(circle, hsl(270,65%,85%) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+  }
+
+  .blob-lilac {
+    background: radial-gradient(circle, hsl(290,70%,90%) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(60px);
+  }
+
+  .text-muted-aura {
+    color: hsl(var(--foreground-muted));
+  }
+
+  .text-subtle-aura {
+    color: hsl(var(--foreground-subtle));
+  }
+}
